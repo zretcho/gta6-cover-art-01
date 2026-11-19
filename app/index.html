@@ -3,21 +3,65 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Cover Snap</title>
+<title>Neon Coast — GTA-style Cover Maker</title>
+<link rel="icon" href="data:,">
 <link rel="stylesheet" href="./style.css">
 </head>
 <body>
+<header class="topbar">
+  <div>
+    <h1>Neon Coast</h1>
+    <p>Your photo, your caption — a GTA-style poster cover, made offline.</p>
+  </div>
+  <p class="steps">1 · Add photos &nbsp; 2 · Pick a layout &amp; grade &nbsp; 3 · Export a PNG</p>
+</header>
 <main class="app">
-  <section class="controls">
-    <h1>Cover Snap</h1>
-    <p>A photo and a caption, made into a square cover.</p>
-    <label>Photo <input id="photo" type="file" accept="image/*"></label>
-    <label>Caption <input id="caption" type="text" maxlength="40" value="Sunset Heist"></label>
-    <button id="export" type="button">Export PNG 1080 x 1080</button>
-    <p id="status" role="status"></p>
+  <section class="controls" aria-label="Cover controls">
+    <div class="group">
+      <h2>Photos</h2>
+      <p class="hint">Photos stay on your machine — nothing is uploaded.</p>
+      <label class="filebutton">Add photos from your machine
+        <input id="addphotos" type="file" accept="image/*" multiple>
+      </label>
+      <button id="samples" type="button" class="ghost">Use the sample photos</button>
+      <div id="photostrip" class="photostrip"></div>
+      <p id="photocount" class="hint"></p>
+    </div>
+    <div class="group">
+      <h2>Layout</h2>
+      <div id="layouts" class="toggles" role="group" aria-label="Panel layout"></div>
+    </div>
+    <div class="group">
+      <h2>Panels</h2>
+      <p class="hint">Click a panel on the cover to select it, then crop it here — or drag the photo right on the cover, scroll to zoom.</p>
+      <div id="panels"></div>
+    </div>
+    <div class="group">
+      <h2>Grade</h2>
+      <div id="grades" class="toggles" role="group" aria-label="Colour grade"></div>
+    </div>
+    <div class="group">
+      <h2>Caption</h2>
+      <label>Title <input id="title" type="text" maxlength="32" value="SUNSET HEIST"></label>
+      <label>Subtitle <input id="subtitle" type="text" maxlength="32" value="Neon Coast"></label>
+      <label class="check"><input id="badge" type="checkbox" checked> Star badge</label>
+    </div>
+    <div class="group">
+      <h2>Export size</h2>
+      <div id="sizes" class="toggles" role="group" aria-label="Export size"></div>
+      <button id="shuffle" type="button" class="ghost">Surprise me — random layout &amp; grade</button>
+      <button id="export" type="button" class="primary">Export PNG</button>
+      <p id="status" role="status"></p>
+    </div>
   </section>
-  <canvas id="cover" width="1080" height="1080" aria-label="The cover"></canvas>
+  <section class="stage" aria-label="Cover preview">
+    <canvas id="cover" width="1080" height="1080" aria-label="The cover"></canvas>
+    <p class="hint">Live preview — exactly what the PNG will look like.</p>
+  </section>
 </main>
+<footer class="foot">
+  <p>Original art, lettering and fonts — no Rockstar Games logo, artwork or font. Type: Anton &amp; Pacifico (SIL Open Font License, see app/fonts/OFL.txt). Photos: yours, or the bundled samples.</p>
+</footer>
 <script type="module" src="./src/main.js"></script>
 </body>
 </html>
